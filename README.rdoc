@@ -1,0 +1,4 @@
+#Rails tutorial sample app
+
+This is the sample app for the rails tutorial by Michael Hartl
+http://railstutorial.org

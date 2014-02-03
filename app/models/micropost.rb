@@ -1,4 +1,5 @@
 class Micropost < ActiveRecord::Base
+	attr_accessible :content
 	belongs_to :user
 	default_scope -> { order('created_At DESC') }
 	validates :user_id, presence: true

@@ -37,11 +37,23 @@ describe "Static pages" do
         let(:other_user) { FactoryGirl.create(:user) }
         before do 
           other_user.follow!(user)
+          user.follow!(other_user)
           visit root_path
         end
 
-        it { should have_link("0 following" , href: following_user_path(user)) }
+        it { should have_link("1 following" , href: following_user_path(user)) }
         it { should have_link("1 followers", href: followers_user_path(user)) }
+
+        describe "unfollowing a user" do
+          before do 
+            visit user_path(other_user)
+            click_button "Unfollow"
+            visit root_path
+          end
+
+          it { should have_link("0 following" , href: following_user_path(user)) }
+          it { should have_link("1 followers", href: followers_user_path(user)) }
+        end
       end
     end
   end
